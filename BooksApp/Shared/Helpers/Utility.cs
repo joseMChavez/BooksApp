@@ -25,10 +25,11 @@ namespace BooksApp.Shared.Helpers
         public class CampoMostrar : Attribute
         {
             public int Index { get; set; }
-            public string Name  { get; set;}
+            public string Name { get; set; }
             public string Mostrar { get; set; }
             public TipoDato DataType { get; set; }
-            public CampoMostrar() {
+            public CampoMostrar()
+            {
                 this.Index = 0;
                 Name = string.Empty;
                 DataType = TipoDato._string;

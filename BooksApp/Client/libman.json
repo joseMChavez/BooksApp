@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "sweetalert2@11.1.10",
+      "destination": "wwwroot/sweetalert2/"
+    }
+  ]
+}

@@ -1,63 +1,8 @@
 ﻿@page "/"
-@page "/{Id:int}"
-@using BooksApp.Shared.Model
-<PageTitle>Index, Pruaba Tecnica Remota</PageTitle>
-
-@inherits IndexBase
-
-<div class="container-fluid">
-
-
-    @switch ((int)Opcion)
-    {       //Vista,Crear,Modifcar
-           case var s when new[] { 1, 2, 4 }.Contains(s):
-           <FormBook OBook="Book" TipoOpcion="@Opcion" Titulo="@Titulo"></FormBook>
-            break;
-
-        case 3:
-
-            <div class="card">
-                <div class="card-header text-center border-info mb-3">
-                    <h3 class="active align-content-center">
-                        @Titulo
-                    </h3>
-                </div>
-                <div class="card-body">
-                   
-                    @if (Lista != null)
-                    {
-                        <div class="badge badge-light">
-                            <a class="btn btn-outline-primary float-left text-dark" @onclick="@(() =>
-                                                                                         {
-
-                                                                                             Titulo = "Crear Books";
-                                                                                             Opcion = TipoOpcion.Crear;
-
-                                                                                         })"><i class="oi oi-plus"></i><b>Crear Books</b></a>
-                       </div>
-                      <TableBooks @ref="Tabla"
-                                     ListaParameter="@Lista"
-                                     OType="@typeof(Book)"
-                                     TablaId="tableRuta"
-                                     OcultarBotones="@(Lista.Count==0)"
-                                     OnView=@Ver
-                                     OnEdit=@Modificar
-                                     OnDelete=@Anular></TableBooks>
-
-                    }
-                    else
-                    {
-                        <div class="spinner"></div>
-                    }
-                </div>
-            </div>
-
-            break;
-        default:
-            break;
-    }
+<PageTitle>Pruba Tecnica</PageTitle>
+<div class="text-center Helpers">
+    <h1>Prueba Tecnica</h1>
+<h3>José M. Chavez Ortiz</h3>
 </div>
-
-
 
 

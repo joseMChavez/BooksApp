@@ -47,7 +47,7 @@ function ShowMessageConfirmation(mensaje) {
         })
 
         swalWithBootstrapButtons.fire({
-            title: "AnkuraSoft",
+            title: "BooksApp",
             text: mensaje,
             icon: 'question',
             showCancelButton: true,
@@ -60,7 +60,7 @@ function ShowMessageConfirmation(mensaje) {
             resolve(result);
             if (result.isConfirmed) {
                 swalWithBootstrapButtons.fire(
-                    'AnkuraSoft',
+                    'BooksApp',
                     'Proceso Completado!',
                     'success'
                 )
@@ -69,7 +69,7 @@ function ShowMessageConfirmation(mensaje) {
                 result.dismiss === Swal.DismissReason.cancel
             ) {
                 swalWithBootstrapButtons.fire(
-                    'AnkuraSoft',
+                    'BooksApp',
                     'Proceso Cancelado!',
                     'info'
                 )

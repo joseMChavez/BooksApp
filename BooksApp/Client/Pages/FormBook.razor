@@ -16,7 +16,7 @@
                         <ValidationSummary />
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-3">
+                        <div class="form-group col-12">
                             <label for="re">Titulo</label>
                             <InputText @bind-Value="OBook.Title" class="form-control" placeholder="Titulo" id="re" disabled="@SoloLectura">
 
@@ -24,12 +24,12 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div  class="col-6">
+                        <div class="col-4">
                             <label for="pc">Conteo de Paginas</label>
                             <InputNumber @bind-Value="OBook.PageCount" class="form-control" id="pc" placeholder="0" disabled="@SoloLectura"></InputNumber>
                         </div>
-                        <div class="col-6">
-                                 <label for="date">Fecha de Publicación</label>
+                        <div class="col-4">
+                            <label for="date">Fecha de Publicación</label>
                             <InputDate @bind-Value="OBook.PublishDate" class="form-control" id="date" placeholder="0" disabled="@SoloLectura"></InputDate>
                         </div>
                     </div>
@@ -39,14 +39,9 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="rex">Excerpt </label>
-                            <InputTextArea @bind-Value="OBook.Excerpt" class="form-control" id="rex" placeholder="Excerpt" disabled="@SoloLectura">
-
-                            </InputTextArea>
-                        </div>
-
-
+                        <label for="rex">Extracto </label>
+                        <InputTextArea @bind-Value="OBook.Excerpt" class="form-control" id="rex" placeholder="Extracto" disabled="@SoloLectura">
+                        </InputTextArea>
                     </div>
 
 

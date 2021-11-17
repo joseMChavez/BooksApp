@@ -31,7 +31,7 @@ namespace BooksApp.Client.Pages
         protected NavigationManager Nav { get; set; }
         #endregion
         #region Variables
-        public EditContext Context { get; set; }
+        public EditContext? Context { get; set; }
         public bool SoloLectura { get; set; }
       
         #endregion
@@ -39,13 +39,8 @@ namespace BooksApp.Client.Pages
 
         protected async override Task OnInitializedAsync()
         {
-
-            
             Context = new(OBook);
             SoloLectura = (TipoOpcion == TipoOpcion.Vista);
-          
-
-
         }
         public async Task Guardar()
         {
@@ -61,25 +56,27 @@ namespace BooksApp.Client.Pages
                             Exito = await Servicio.Create(OBook);
                         }else if (TipoOpcion == TipoOpcion.Modificar)
                         {
-                            Exito = await Servicio.Create(OBook);
+                            Exito = await Servicio.Update(OBook.Id,OBook);
                         }
                         if (Exito)
                         {
-                            Nav.NavigateTo("", true);
-                            await Js.ShowMessageToast("Exito");
-                            StateHasChanged();
 
+                            Nav.NavigateTo("Books", true);
+                            Js.ShowMessageToast("Exito");
+                            StateHasChanged();
                         }
                         else
                         {
-                            Nav.NavigateTo("", true);
-                            await Js.ShowMessageToast($"Error al Interntar {(TipoOpcion == TipoOpcion.Crear?"Crear":"Modificar")}", JSExtention.Icono.error);
 
+                            Nav.NavigateTo("Books", true);
+                            Js.ShowMessageToast($"Error al Interntar {(TipoOpcion == TipoOpcion.Crear ? "Crear" : "Modificar")}", JSExtention.Icono.error);
                             StateHasChanged();
-
-
                         }
+                       
+
+                        
                     }
+              
                 await Task.CompletedTask;
 
 
@@ -98,14 +95,14 @@ namespace BooksApp.Client.Pages
             {
                 if (await Js.ShowMessageConf("Si Cancela No Se Guardaran Los Cambios. \r\n ¿Esta Seguro de no Guardar?"))
                 {
-                    Nav.NavigateTo("", true);
+                    Nav.NavigateTo("Books", true);
                     StateHasChanged();
                 }
 
             }
             else
             {
-                Nav.NavigateTo("", true);
+                Nav.NavigateTo("Books", true);
                 StateHasChanged();
             }
             StateHasChanged();

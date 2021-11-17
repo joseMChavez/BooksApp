@@ -58,7 +58,7 @@ namespace BooksApp.Client.Pages
         private async Task CargarData()
         {
             Lista = new();
-
+           
             Lista = await Servicio.Get();
             Titulo = "Prueba Técnica Remota, Lista de Libros";
             Opcion = TipoOpcion.Listado;
@@ -80,7 +80,14 @@ namespace BooksApp.Client.Pages
         public async Task Ver(object id)
         {
             Id = (int)id;
-            Nav.NavigateTo($"/{Id}", true);
+            Book = Lista.AsQueryable().Where(x=>x.Id==Id).FirstOrDefault();
+            if (Book.Id == 0)
+            {
+                await JS.ShowMessageToast("No Encontrado.", JSExtention.Icono.info);
+                Opcion = TipoOpcion.Listado;
+            }
+            Titulo = "Ver Books";
+            Opcion = TipoOpcion.Vista;
             StateHasChanged();
             await Task.CompletedTask;
         }
