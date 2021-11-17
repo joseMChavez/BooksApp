@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BooksApp.Services\BooksApp.Services.csproj" />
     <ProjectReference Include="..\Shared\BooksApp.Shared.csproj" />
   </ItemGroup>
 

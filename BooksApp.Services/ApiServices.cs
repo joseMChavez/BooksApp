@@ -2,10 +2,9 @@
 using System.Text;
 using System.Text.Json;
 
-
-namespace BooksApp.Server.Services
+namespace BooksApp.Services
 {
-    public interface IBookService
+    public interface IApiService
     {
         /// <summary>
         /// Permite Hacer una peticion HTTP Post a https://fakerestapi.azurewebsites.net/api/v1/Books
@@ -19,7 +18,7 @@ namespace BooksApp.Server.Services
         /// <param name="id"></param>
         /// <param name="book"></param>
         /// <returns></returns>
-        Task<bool> Update(int id,Book book);
+        Task<bool> Update(int id, Book book);
         /// <summary>
         /// Permite Hacer una peticion HTTP Delete a https://fakerestapi.azurewebsites.net/api/v1/Books
         /// </summary>
@@ -39,18 +38,16 @@ namespace BooksApp.Server.Services
         Task<Book> GetById(int id);
 
     }
-    public class BookService : IBookService
+    public class ApiServices : IApiService
     {
         private readonly HttpClient client;
-       
+
         private readonly string? URL;
-       
-        public BookService(HttpClient http)
+
+        public ApiServices(HttpClient http, string url = "api/Books")
         {
-          
             client = http;
-           // configuration = c;S
-            URL = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+            URL = url;
         }
         public async Task<bool> Create(Book book)
         {
@@ -151,11 +148,11 @@ namespace BooksApp.Server.Services
             }
         }
 
-        public async Task<bool> Update(int id,Book book)
+        public async Task<bool> Update(int id, Book book)
         {
             try
             {
-                if (book == null && id==0) return false;
+                if (book == null && id == 0) return false;
 
                 string json = JsonSerializer.Serialize(book);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -171,6 +168,7 @@ namespace BooksApp.Server.Services
                 Console.WriteLine(e.Message);
                 return false;
             }
+
         }
     }
 }

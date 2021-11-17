@@ -1,14 +1,16 @@
-using BooksApp.Server.Services;
+
+using BooksApp.Services;
+using BooksApp.Shared.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
-
+HttpClient client = new();
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 //Agregamos nuestro servicion mediante Inyecion de dependencias 
-builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddTransient<IApiService>(x => new  ApiServices(client,Settings.URL));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

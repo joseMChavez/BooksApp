@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BooksApp\Server\BooksApp.Server.csproj" />
+    <ProjectReference Include="..\BooksApp.Services\BooksApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

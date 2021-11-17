@@ -1,8 +1,7 @@
-﻿using BooksApp.Server.Services;
+﻿using BooksApp.Services;
 using BooksApp.Shared.Model;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BooksApp.Server.Controllers
 {
@@ -11,8 +10,8 @@ namespace BooksApp.Server.Controllers
     public class BooksController : ControllerBase
     {
         // GET: api/<BooksController>
-        private readonly IBookService service;
-        public BooksController(IBookService bookService)=>service = bookService;
+        private readonly IApiService service;
+        public BooksController(IApiService bookService)=>service = bookService;
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

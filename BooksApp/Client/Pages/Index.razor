@@ -1,9 +1,63 @@
 ﻿@page "/"
+@page "/{Id:int}"
+@using BooksApp.Shared.Model
+<PageTitle>Index, Pruaba Tecnica Remota</PageTitle>
 
-<PageTitle>Index</PageTitle>
+@inherits IndexBase
 
-<h1>Hello, world!</h1>
+<div class="container-fluid">
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    @switch ((int)Opcion)
+    {       //Vista,Crear,Modifcar
+           case var s when new[] { 1, 2, 4 }.Contains(s):
+           <FormBook OBook="Book" TipoOpcion="@Opcion" Titulo="@Titulo"></FormBook>
+            break;
+
+        case 3:
+
+            <div class="card">
+                <div class="card-header text-center border-info mb-3">
+                    <h3 class="active align-content-center">
+                        @Titulo
+                    </h3>
+                </div>
+                <div class="card-body">
+                   
+                    @if (Lista != null)
+                    {
+                        <div class="badge badge-light">
+                            <a class="btn btn-outline-primary float-left text-dark" @onclick="@(() =>
+                                                                                         {
+
+                                                                                             Titulo = "Crear Books";
+                                                                                             Opcion = TipoOpcion.Crear;
+
+                                                                                         })"><i class="oi oi-plus"></i><b>Crear Books</b></a>
+                       </div>
+                      <TableBooks @ref="Tabla"
+                                     ListaParameter="@Lista"
+                                     OType="@typeof(Book)"
+                                     TablaId="tableRuta"
+                                     OcultarBotones="@(Lista.Count==0)"
+                                     OnView=@Ver
+                                     OnEdit=@Modificar
+                                     OnDelete=@Anular></TableBooks>
+
+                    }
+                    else
+                    {
+                        <div class="spinner"></div>
+                    }
+                </div>
+            </div>
+
+            break;
+        default:
+            break;
+    }
+</div>
+
+
+
+

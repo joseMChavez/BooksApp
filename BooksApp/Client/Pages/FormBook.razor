@@ -1,0 +1,62 @@
+﻿@inherits FormBookBase
+<div class="container-fluid">
+    @if (@OBook != null)
+    {
+        <div class="card border border-info">
+            <EditForm EditContext="@Context" OnSubmit="@Guardar">
+                <div class="card-header">
+                    <h3 class="active align-content-center text-dark">
+                        @Titulo
+                    </h3>
+
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-3">
+                            <label for="re">Titulo</label>
+                            <InputText @bind-Value="OBook.Title" class="form-control" placeholder="Titulo" id="re" disabled="@SoloLectura">
+
+                            </InputText>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div  class="col-6">
+                            <label for="pc">Conteo de Paginas</label>
+                            <InputNumber @bind-Value="OBook.PageCount" class="form-control" id="pc" placeholder="0" disabled="@SoloLectura"></InputNumber>
+                        </div>
+                        <div class="col-6">
+                                 <label for="date">Fecha de Publicación</label>
+                            <InputDate @bind-Value="OBook.PublishDate" class="form-control" id="date" placeholder="0" disabled="@SoloLectura"></InputDate>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="des">Descripción</label>
+                        <InputTextArea @bind-Value="OBook.Description" class="form-control" id="des" placeholder="Descripción" disabled="@SoloLectura"></InputTextArea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="rex">Excerpt </label>
+                            <InputTextArea @bind-Value="OBook.Excerpt" class="form-control" id="rex" placeholder="Excerpt" disabled="@SoloLectura">
+
+                            </InputTextArea>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success " disabled="@SoloLectura">Guardar</button>
+                        <a class="btn btn-danger text-light" @onclick="Cancelar">Cancelar</a>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    }
+</div>
